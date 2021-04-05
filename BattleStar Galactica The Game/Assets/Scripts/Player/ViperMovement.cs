@@ -18,7 +18,6 @@ public class ViperMovement : MonoBehaviour, IPlayer
     private bool Stabilize = false;
     private float CurrentSpeed;
     private const float MaxSpeed = 10f;
-    private Vector3 forward = new Vector3(-1, 0, 0);
 
     private bool TacticalView = false;
     void Start()
@@ -104,6 +103,10 @@ public class ViperMovement : MonoBehaviour, IPlayer
                 rotate = new Vector3();
                 Stabilize = true;
             }
+            if (Input.GetKey(KeyCode.Z)) // Move on y axis up
+                transform.Translate(new Vector3(0,1,0)* Time.deltaTime * 2.0f);
+            if (Input.GetKey(KeyCode.X)) // Move on y axis down
+                transform.Translate(new Vector3(0,-1,0)* Time.deltaTime * 2.0f);
 
         }
 
