@@ -79,7 +79,7 @@ public class ViperMovement : MonoBehaviour, IPlayer
         }
         else{
             //Freeze.transform.Translate(Vector3.forward * CurrentSpeed * Time.deltaTime);
-            //transform.Translate(Vector3.forward * CurrentSpeed/2 * Time.deltaTime);
+            transform.Translate(Vector3.forward * CurrentSpeed/2 * Time.deltaTime);
         }
     }
 
