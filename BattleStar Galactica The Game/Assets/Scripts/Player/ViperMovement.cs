@@ -7,6 +7,9 @@ public class ViperMovement : MonoBehaviour, IPlayer
     [SerializeField]
     private Thruster[] thrusters;
 
+    [SerializeField]
+    private GameObject Freeze;
+
     [SerializeField]private const float TacticalRotation = 150f;
 
     private const float Speed = 2.0f;
@@ -23,7 +26,7 @@ public class ViperMovement : MonoBehaviour, IPlayer
     void Start()
     {
         CurrentSpeed = 0f;
-        
+        //transform = GetComponents<Transform>();
        // thrusters = GetComponents<Thruster>();
     }
 
@@ -35,7 +38,13 @@ public class ViperMovement : MonoBehaviour, IPlayer
         RotationHandler();
         MovementHandler();
         if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if(!TacticalView){
+                //Freeze.transform.position = transform.position;
+                //Freeze.transform.rotation = transform.rotation;
+            }
             TacticalView = true;
+        }
         else if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             TacticalView = false;
@@ -66,8 +75,12 @@ public class ViperMovement : MonoBehaviour, IPlayer
                 CurrentSpeed = MaxSpeed;
             else if (CurrentSpeed < -MaxSpeed)
                 CurrentSpeed = -MaxSpeed;
+            transform.Translate(Vector3.forward * CurrentSpeed * Time.deltaTime);
         }
-        transform.Translate(Vector3.forward * CurrentSpeed * Time.deltaTime);
+        else{
+            //Freeze.transform.Translate(Vector3.forward * CurrentSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.forward * CurrentSpeed/2 * Time.deltaTime);
+        }
     }
 
     void RotationHandler()
